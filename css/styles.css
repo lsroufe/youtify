@@ -1,18 +1,25 @@
-body {
-    padding: 20px;
+.space {
+	padding-bottom: 10px;
+
 }
-#search-form, .form-control {
-    margin-bottom: 20px;
+.container-fluid {
+	width: 90%;
+	padding: 0;
 }
-.cover {
-    width: 300px;
-    height: 300px;
-    display: inline-block;
-    background-size: cover;
+p {
+	text-align: center;
+	padding-bottom: 20px;
+	margin-top: 0px;
 }
-.cover:hover {
-    cursor: pointer;
+.navbar {
+	margin-bottom: 5px;
 }
-.cover.playing {
-    border: 5px solid #e45343;
+.thumbnail{        
+
+}
+.hideMusic {
+	display: none;
+}
+.showMusic {
+	display:;
 }

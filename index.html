@@ -1,14 +1,43 @@
-<div class="container">
-    <h1>Search for an Artist</h1>
-    <p>Type an artist name and click on "Search". Then, click on any album from the results to play 30 seconds of its first track.</p>
-    <form id="search-form">
-        <input type="text" id="query" value="" class="form-control" placeholder="Type an Artist Name"/>
-        <input type="submit" id="search" class="btn btn-primary" value="Search" />
-    </form>
-    <div id="results"></div>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Youtify</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Search for an artist</a>
+              <form id="js-userSubmit" class="navbar-form navbar-left">
+                <label for="query"></label>
+                <div class="form-group">
+                    <input id="js-userInput" class="speech-input form-control" type="text" name="" x-webkit-speech placeholder="Artist Name">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+              </form>
+              <div id="moveTo"></div>
+          </div><!-- /.container-fluid -->
+        </nav>
+    </head>
+<body>
+<div class="container-fluid">
+    <p id="p" class="show h2"></p>
+    <div class="js-search-results fullTrack hideMusic">
+        <div id="audio"></div>  
+    </div>
+    <div class="js-preview-results previewTrack"> 
+        <div id="audio"></div>  
+    </div>
 </div>
-<script id="results-template" type="text/x-handlebars-template">
-    {{#each albums.items}}
-    <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
-    {{/each}}
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+</body>
+</html>
