@@ -30,25 +30,39 @@ var getSpotify = function(userInput) {
             else {
                 console.log(receivedApiData.artists.items[0].id)
                 var artistId = receivedApiData.artists.items[0].id
-                $('p').html(receivedApiData.artists.items[0].name + "'s Top Tracks");
+                $('p').html(receivedApiData.artists.items[0].name + "'s Albums");
                 var getTopTracks = function() {
                     $.getJSON(
-                        'https://api.spotify.com/v1/artists/' + artistId + '/top-tracks?country=US',
+                        'https://api.spotify.com/v1/artists/' + artistId + '/albums?album_type=album',
                     {
                         limit: 5
                     },
-                        function(recivedTracks) {
-                            var tracks = recivedTracks.tracks;
-                            console.log(recivedTracks.tracks);
-                            for(var i = 0; i < 9; i++){                     // FIX!!!
+                        // function(recivedTracks) {
+                        //     var tracks = recivedTracks.tracks;
+                        //     console.log(recivedTracks.tracks);
+                        //     for(var i = 0; i < 9; i++){                     // FIX!!!
+                        //         buildTrack += "<iframe class='col-md-4 space' src='https://embed.spotify.com/?uri=";                            
+                        //         buildTrack += tracks[i].uri + "' ";
+                        //         buildTrack += 'width="200" height="300" frameborder="0" allowtransparency="true"></iframe>'
+                        //         $(".js-search-results").html(buildTrack);
+                        //         buildPreview += '<div class="col-md-4 space"><a href="#" class="thumbnail">' 
+                        //         buildPreview += '<img src="' + tracks[i].album.images[0].url + '"' 
+                        //         buildPreview += 'alt="' + tracks[i].preview_url + '"></a>' 
+                        //         buildPreview += tracks[i].name + '<br><audio controls><source src="' + tracks[i].preview_url + '" type="audio/mp4"></div>'
+                        //     }
+                        function(receivedAlbums) {
+                            var albumId = receivedAlbums.id;
+                            var cover = receivedAlbums.items[0].images[1].uri;
+                            console.log(receivedAlbums.id);
+                            for(var i = 0; i < 9; i++){                    
                                 buildTrack += "<iframe class='col-md-4 space' src='https://embed.spotify.com/?uri=";                            
-                                buildTrack += tracks[i].uri + "' ";
-                                buildTrack += 'width="200" height="300" frameborder="0" allowtransparency="true"></iframe>'
+                                buildTrack += receivedAlbums[i].uri + "' ";
+                                buildTrack += 'width="300" height="300" frameborder="0" allowtransparency="true"></iframe>'
                                 $(".js-search-results").html(buildTrack);
                                 buildPreview += '<div class="col-md-4 space"><a href="#" class="thumbnail">' 
-                                buildPreview += '<img src="' + tracks[i].album.images[0].url + '"' 
-                                buildPreview += 'alt="' + tracks[i].preview_url + '"></a>' 
-                                buildPreview += tracks[i].name + '<br><audio controls><source src="' + tracks[i].preview_url + '" type="audio/mp4"></div>'
+                                buildPreview += '<img src="' + receivedAlbums[i].images[1].url + '"' 
+                                buildPreview += 'alt="' + receivedAlbums[i].name + '"></a>' 
+                                buildPreview += receivedAlbums[i].name> + '</div>'
                             }
                             console.log(buildTrack);
                             $(".js-search-results").html(buildTrack);
