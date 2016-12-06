@@ -56,13 +56,13 @@ var getSpotify = function(userInput) {
                             console.log(receivedAlbums.id);
                             for(var i = 0; i < 9; i++){                    
                                 buildTrack += "<iframe class='col-md-4 space' src='https://embed.spotify.com/?uri=";                            
-                                buildTrack += receivedAlbums[i].uri + "' ";
+                                buildTrack += receivedAlbums[i] + "' ";
                                 buildTrack += 'width="300" height="300" frameborder="0" allowtransparency="true"></iframe>'
                                 $(".js-search-results").html(buildTrack);
                                 buildPreview += '<div class="col-md-4 space"><a href="#" class="thumbnail">' 
-                                buildPreview += '<img src="' + receivedAlbums[i].images[1].url + '"' 
-                                buildPreview += 'alt="' + receivedAlbums[i].name + '"></a>' 
-                                buildPreview += receivedAlbums[i].name> + '</div>'
+                                buildPreview += '<img src="' + cover + '"' 
+                                buildPreview += 'alt="' + receivedAlbums[i] + '"></a>' 
+                                buildPreview += receivedAlbums[i]> + '</div>'
                             }
                             console.log(buildTrack);
                             $(".js-search-results").html(buildTrack);
