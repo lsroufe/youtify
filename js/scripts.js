@@ -1,5 +1,7 @@
 var buildTrack = '';
 var buildPreview = '';
+var albumId = '';
+var cover = '';
 // get input from user
 getUserInput();
 
@@ -28,7 +30,7 @@ var getSpotify = function(userInput) {
               alert("No songs found!");                            
             }
             else {
-                console.log(receivedApiData.artists.items[0].id)
+                //console.log(receivedApiData.artists.items[0].id)
                 var artistId = receivedApiData.artists.items[0].id
                 $('p').html(receivedApiData.artists.items[0].name + "'s Albums");
                 var getTopTracks = function() {
@@ -51,21 +53,22 @@ var getSpotify = function(userInput) {
                         //         buildPreview += tracks[i].name + '<br><audio controls><source src="' + tracks[i].preview_url + '" type="audio/mp4"></div>'
                         //     }
                         function(receivedAlbums) {
-                            var albumId = receivedAlbums.id;
-                            var cover = receivedAlbums.items[0].images[1].uri;
-                            console.log(receivedAlbums.id);
-                            for(var i = 0; i < 9; i++){                    
-                                buildTrack += "<iframe class='col-md-4 space' src='https://embed.spotify.com/?uri=";                            
-                                buildTrack += receivedAlbums[i] + "' ";
-                                buildTrack += 'width="300" height="300" frameborder="0" allowtransparency="true"></iframe>'
+                            for(var i = 0; i < receivedAlbums.items.length; i++){ 
+                                albumId = receivedAlbums.items[i].id;
+                                cover = receivedAlbums.items[i].images[1].url;
+                                console.log(albumId);
+                                console.log(cover);                   
+                                //buildTrack += "<div class='col-md-4 space' src='https://embed.spotify.com/?uri=";                            
+                                //buildTrack += receivedAlbums.items[i].uri + "' ";
+                                //buildTrack += 'width="300" height="300" frameborder="0" allowtransparency="true"></div>'
                                 $(".js-search-results").html(buildTrack);
-                                buildPreview += '<div class="col-md-4 space"><a href="#" class="thumbnail">' 
-                                buildPreview += '<img src="' + cover + '"' 
-                                buildPreview += 'alt="' + receivedAlbums[i] + '"></a>' 
-                                buildPreview += receivedAlbums[i]> + '</div>'
+                                buildPreview += '<div class="col-md-4 space"><a href="#" class="thumbnail">'; 
+                                buildPreview += '<img src="' + cover + '"'; 
+                                buildPreview += 'alt="' + receivedAlbums.items[i].name + '"></a>'; 
+                                buildPreview += receivedAlbums.items[i].name + '</div>';
                             }
-                            console.log(buildTrack);
-                            $(".js-search-results").html(buildTrack);
+                            console.log(buildPreview);
+                            //$(".js-search-results").html(buildTrack);
                             $(".js-preview-results").html(buildPreview);
                             buildTrack = '';
                             buildPreview = '';
