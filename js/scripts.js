@@ -14,6 +14,17 @@ function getUserInput() {
     })
 }
 
+function getTracklist(albumId){
+    $.getJSON(
+        'https://api.spotify.com/v1/albums/' + albumId + '/tracks',
+    function(tracks){
+        for(var i = 0; i < tracks.items.name; i++){
+            console.log(tracks.items[i].name);
+        }
+    });
+    //return variable that collects tracks
+} 
+
 //send usersInput to spotify api to get json
 
 var getSpotify = function(userInput) {
@@ -33,7 +44,7 @@ var getSpotify = function(userInput) {
                 //console.log(receivedApiData.artists.items[0].id)
                 var artistId = receivedApiData.artists.items[0].id
                 $('p').html(receivedApiData.artists.items[0].name + "'s Albums");
-                var getTopTracks = function() {
+                //var getTopTracks = function() {
                     $.getJSON(
                         'https://api.spotify.com/v1/artists/' + artistId + '/albums?album_type=album',
                     {
@@ -66,22 +77,23 @@ var getSpotify = function(userInput) {
                                 buildPreview += '<img src="' + cover + '"'; 
                                 buildPreview += 'alt="' + receivedAlbums.items[i].name + '"></a>'; 
                                 buildPreview += receivedAlbums.items[i].name + '</div>';
+
+                                getTracklist(albumId);      
                             }
                             console.log(buildPreview);
                             //$(".js-search-results").html(buildTrack);
                             $(".js-preview-results").html(buildPreview);
                             buildTrack = '';
                             buildPreview = '';
+                                });
+                                };
 
-                        }
-                    );
-                } 
-                getTopTracks();
+                        //}
+                }); 
+                
                
             }
-        }
-    )
-}
+            //getTopTracks();
 var state = true;
 
 $("#previewTrack").click(function(){
